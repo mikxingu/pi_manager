@@ -83,7 +83,52 @@ def show_percentage():
     percentage_label.place(x=200, y=35)
 
 
-show_percentage()
+# Monthly Income Graphic
 
+def show_monthly_income():
+    month_list = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    
+    values_list = [0, 1.87, 117.91, 0.17, 13.99, 0.12, 238.98, 49,99, 27.6, 115.55, 320]
+
+    #draw figure and set an axis
+    figure = plt.figure(figsize=(4, 3.45), dpi=60)
+    
+    #add axis
+    ax = figure.add_subplot(111)
+
+    #set bars to axis
+    ax.bar(month_list, values_list, color=colors, width=0.9)
+
+
+    c = 0
+    for i in ax.patches:
+        ax.text(i.get_x()-.001, i.get_height()+.5,
+            str("{:,.0f}".format(values_list[c])),fontsize=17, fontstyle='italic', verticalalignment='bottom')
+        c += 1
+
+    ax.set_xticklabels(month_list, fontsize=16)
+
+    ax.patch.set_facecolor('#ffffff')
+    ax.spines['bottom'].set_color('#CCCCCC')
+    ax.spines['bottom'].set_linewidth(1)
+    ax.spines['right'].set_linewidth(0)
+    ax.spines['top'].set_linewidth(0)
+    ax.spines['left'].set_color('#CCCCCC')
+    ax.spines['left'].set_linewidth(1)
+
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.tick_params(bottom=False, left=False)
+    ax.set_axisbelow(True)
+    ax.yaxis.grid(False, color='#EEEEEE')
+    ax.xaxis.grid(False)
+
+    canva = FigureCanvasTkAgg(figure, frame_middle)
+    canva.get_tk_widget().place(x=10, y=70)
+     
+
+show_percentage()
+show_monthly_income()
 
 window_main.mainloop()
