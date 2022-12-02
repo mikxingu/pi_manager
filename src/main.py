@@ -1,7 +1,19 @@
 from views import *
+
 from tkinter import *
 from tkinter import Tk, ttk
+
+# Import Pillow
 from PIL import Image,  ImageTk
+
+# Import Tkinter ProgressBar
+from tkinter.ttk import Progressbar
+
+#Import Matplotlib
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+
 
 ################# cores ###############
 color_black = "#2e2d2b"  # Preta
@@ -51,6 +63,27 @@ app_logo = Label(frame_upper, image=app_image, text= " PI Manager - Renda Passiv
 app_logo.place(x=0, y=0)
 
 
+# Annual Goal Bar
+def show_percentage():
+    annual_goal_label = Label(frame_middle, text="Meta anual", height=1, anchor=NW, font=('Verdana 12'), bg=color_white,fg=color_value)
+    annual_goal_label.place(x=7, y=5)
+
+    style = ttk.Style()
+    style.theme_use('default')
+    style.configure("black.Horizontal.TProgressbar", background = '#CDEB8B')
+    style.configure("TProgressbar", thickness = 20)
+    bar = Progressbar(frame_middle, length=180, style='black.Horizontal.TProgressbar')
+    
+    bar.place(x=10, y=35)
+    bar['value'] = 50
+
+    valor = 50
+
+    percentage_label = Label(frame_middle, text="{:,.2f} %".format(valor), anchor=NW, font=('Verdana 12'), bg=color_white,fg=color_value)
+    percentage_label.place(x=200, y=35)
+
+
+show_percentage()
 
 
 window_main.mainloop()
