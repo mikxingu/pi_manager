@@ -1,6 +1,7 @@
 from views import *
 from tkinter import *
 from tkinter import Tk, ttk
+from PIL import Image,  ImageTk
 
 ################# cores ###############
 color_black = "#2e2d2b"  # Preta
@@ -39,7 +40,15 @@ frame_lower.grid(row=2, column=0, pady=0, padx=10, sticky=NSEW)
 
 
 
+### Upper Frame Config
 
+# Open Logo
+app_image = Image.open('./src/img/profit.png')
+app_image = app_image.resize((45, 45))
+app_image = ImageTk.PhotoImage(app_image)
+
+app_logo = Label(frame_upper, image=app_image, text= " PI Manager - Renda Passiva", width=900, compound=LEFT, padx=5, relief=RAISED, anchor=NW, font=('Verdana 20 bold'), bg=color_white, fg=color_value)
+app_logo.place(x=0, y=0)
 
 
 
