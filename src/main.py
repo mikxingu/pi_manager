@@ -94,28 +94,42 @@ def show_percentage():
 
 
 def show_monthly_income():
-    month_list = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai',
-                  'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+    month_list = ['Out', 'Nov', 'Dez']
 
-    values_list = [0, 1.87, 117.91, 0.17, 13.99,
-                   0.12, 238.98, 49, 99, 27.6, 115.55, 320]
+    stock_list = [0, 46.84, 323.52]
+    fii_list = [27.6, 68.36, 26.4]
+
+    width = 0.35
 
     # draw figure and set an axis
-    figure = plt.figure(figsize=(4, 3.45), dpi=60)
+    # figure = plt.figure(figsize=(4, 3.45), dpi=60)
 
-    # add axis
+    figure = plt.figure(figsize=(4, 3.5), dpi=60)
+    # ax = plt.subplots()
+
     ax = figure.add_subplot(111)
 
-    # set bars to axis
-    ax.bar(month_list, values_list, color=colors, width=0.9)
+    ax.bar(month_list, stock_list, width, label="Stocks")
+    ax.bar(month_list, fii_list, width, bottom=stock_list,
+        label="FIIs")
 
-    c = 0
-    for i in ax.patches:
-        ax.text(i.get_x()-.001, i.get_height()+.5,
-                str("{:,.0f}".format(values_list[c])), fontsize=17, fontstyle='italic', verticalalignment='bottom')
-        c += 1
+    ax.set_ylabel('Ativos')
+    ax.set_title('Ganho Mensal')
+    ax.legend()
 
-    ax.set_xticklabels(month_list, fontsize=16)
+    # # add axis
+    
+
+    # # set bars to axis
+    # ax.bar(month_list, values_list, color=colors, width=0.9)
+
+    # c = 0
+    # for i in ax.patches:
+    #     ax.text(i.get_x()-.001, i.get_height()+.5,
+    #             str("{:,.0f}".format(values_list[c])), fontsize=17, fontstyle='italic', verticalalignment='bottom')
+    #     c += 1
+
+    # ax.set_xticklabels(month_list, fontsize=16)
 
     ax.patch.set_facecolor('#ffffff')
     ax.spines['bottom'].set_color('#CCCCCC')
@@ -125,20 +139,18 @@ def show_monthly_income():
     ax.spines['left'].set_color('#CCCCCC')
     ax.spines['left'].set_linewidth(1)
 
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.tick_params(bottom=False, left=False)
-    ax.set_axisbelow(True)
-    ax.yaxis.grid(False, color='#EEEEEE')
-    ax.xaxis.grid(False)
+    # ax.spines['top'].set_visible(False)
+    # ax.spines['right'].set_visible(False)
+    # ax.spines['left'].set_visible(False)
+    # ax.tick_params(bottom=False, left=False)
+    # ax.set_axisbelow(True)
+    # ax.yaxis.grid(False, color='#EEEEEE')
+    # ax.xaxis.grid(False)
 
     canva = FigureCanvasTkAgg(figure, frame_middle)
     canva.get_tk_widget().place(x=10, y=70)
 
 # Resumo
-
-
 def show_year_resume():
     values = [1300, 200, 632]
 
